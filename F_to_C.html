@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fahrenheit to Celsius Converter</title>
+    <style>
+        /* Basic styling for the navbar */
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color: #111;
+        }
+    </style>
+</head>
+<body>
+
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="C_to_F.html">Celsius Converter</a></li>
+    </ul>
+
+    <h1>Fahrenheit to Celsius Converter</h1>
+    <form id="fahrenheitForm">
+        <label for="fahrenheit">Enter Fahrenheit:</label>
+        <input type="number" id="fahrenheitInput">
+        <button type="submit">Convert</button>
+        <button type="reset">Reset</button>
+    </form>
+    <p id="result"></p>
+
+    <script>
+        function onConvertBtnClicked(event) {
+            event.preventDefault(); // Prevent form submission
+            // Get input value
+            var fahrenheit = parseFloat(document.getElementById("fahrenheitInput").value);
+
+            // Check if input is a number
+            if (!isNaN(fahrenheit)) {
+                // Convert Fahrenheit to Celsius
+                var celsius = (fahrenheit - 32) * (5/9);
+
+                // Display the result
+                document.getElementById("result").innerHTML = fahrenheit + " Fahrenheit is " + celsius.toFixed(2) + " Celsius.";
+            } else {
+                // If input is not a number, display error message
+                document.getElementById("result").innerHTML = "Please enter a valid number.";
+            }
+        }
+
+        function onResetBtnClicked() {
+            // Clear the result
+            document.getElementById("result").innerHTML = "";
+        }
+
+        // Attach event handlers
+        window.onload = function() {
+            document.getElementById("fahrenheitForm").addEventListener("submit", onConvertBtnClicked);
+            document.getElementById("fahrenheitForm").addEventListener("reset", onResetBtnClicked);
+        };
+    </script>
+</body>
+</html>
